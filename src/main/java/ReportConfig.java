@@ -1,30 +1,29 @@
-import java.io.File;
 import java.util.List;
 
 /**
  * Created by Vladimir on 16.06.2020.
  */
 public class ReportConfig {
-    private short width;
-    private short height;
+    private Integer width;
+    private Integer height;
     private List<ColumnConfig> columnConfigs;
 
     public ReportConfig() {
     }
 
-    public short getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(short width) {
+    public void setWidth(Integer width) {
         this.width = width;
     }
 
-    public short getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(short height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 
@@ -37,4 +36,13 @@ public class ReportConfig {
     }
 
 
+
+    @Override
+    public String toString() {
+        return "ReportConfig{" +
+                "width= " + width +
+                ", height= " + height +
+                ", number of columns= " + columnConfigs.size() +
+                '}';
+    }
 }

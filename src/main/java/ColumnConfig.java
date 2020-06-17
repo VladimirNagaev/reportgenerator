@@ -24,5 +24,11 @@ public class ColumnConfig {
         this.width = width;
     }
 
-
+    @Override
+    public String toString() {
+        return "ColumnConfig{" +
+                "title='" + title + '\'' +
+                ", width=" + width +
+                '}' + "\n";
+    }
 }

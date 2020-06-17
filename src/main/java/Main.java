@@ -1,5 +1,7 @@
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -9,18 +11,18 @@ import java.io.IOException;
 public class Main {
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 
         if (args.length == 3) {
-            String address = args[0];
+            String addressOfConfig = args[0];
             ConfigParser configParser = new ConfigParser();
-            ReportConfig reportConfig = configParser.parseFromAddress(address);
-            TableFomatter tableFomatter = new TableFomatter(reportConfig);
+            ReportConfig reportConfig = configParser.parseFromAddress(addressOfConfig);
+            TableFormatter tableFormatter = new TableFormatter(reportConfig);
             FileInputStream fileInputStream = new FileInputStream(args[1]);
             FileOutputStream fileOutputStream = new FileOutputStream(args[2]);
 
 
-            tableFomatter.format(fileInputStream, fileOutputStream);
+            tableFormatter.format(fileInputStream, fileOutputStream);
 
 
             fileOutputStream.close();
