@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d69afa86-d313-4c27-b11f-6e6738b00540" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/TableFomatter.java" afterPath="$PROJECT_DIR$/src/main/java/TableFormatter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ColumnConfig.java" afterPath="$PROJECT_DIR$/src/main/java/ColumnConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ConfigParser.java" afterPath="$PROJECT_DIR$/src/main/java/ConfigParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ReportConfig.java" afterPath="$PROJECT_DIR$/src/main/java/ReportConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/TableFormatter.java" afterPath="$PROJECT_DIR$/src/main/java/TableFormatter.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,13 +41,15 @@
       <file leaf-file-name="TableFormatter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/TableFormatter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-279">
-              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state relative-caret-position="146">
+              <caret line="69" column="59" lean-forward="false" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
               <folding>
                 <element signature="method#stringDelimiter#0;class#TableFormatter#0" expanded="false" />
                 <element signature="method#headRawWriter#0;class#TableFormatter#0" expanded="false" />
-                <element signature="e#1932#1940#0" expanded="true" />
-                <element signature="e#3133#3141#0" expanded="true" />
+                <element signature="method#howManyRowDefiner#0;class#TableFormatter#0" expanded="false" />
+                <element signature="e#1940#1948#0" expanded="true" />
+                <element signature="e#3886#3894#0" expanded="true" />
+                <element signature="e#5366#5374#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,10 +80,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="680">
               <caret line="52" column="61" lean-forward="false" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#726#740#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,7 +90,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
               <caret line="19" column="26" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -615,15 +611,15 @@
       <updated>1592332441265</updated>
       <workItem from="1592332444465" duration="4429000" />
       <workItem from="1592372009763" duration="7222000" />
-      <workItem from="1592392835405" duration="3252000" />
+      <workItem from="1592392835405" duration="8458000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14903000" />
+    <option name="totallyTimeSpent" value="20109000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1934" height="1047" extended-state="0" />
+    <frame x="-7" y="0" width="1934" height="1047" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -705,10 +701,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="52" column="61" lean-forward="true" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#726#740#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -716,7 +709,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="19" column="26" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -727,8 +722,10 @@
           <folding>
             <element signature="method#stringDelimiter#0;class#TableFormatter#0" expanded="false" />
             <element signature="method#headRawWriter#0;class#TableFormatter#0" expanded="false" />
-            <element signature="e#1932#1940#0" expanded="true" />
-            <element signature="e#3133#3141#0" expanded="true" />
+            <element signature="method#howManyRowDefiner#0;class#TableFormatter#0" expanded="false" />
+            <element signature="e#1940#1948#0" expanded="true" />
+            <element signature="e#3886#3894#0" expanded="true" />
+            <element signature="e#5366#5374#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -753,15 +750,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="19" column="26" lean-forward="false" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ColumnConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="31" column="25" lean-forward="false" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -769,10 +760,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="52" column="61" lean-forward="false" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#726#740#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -786,6 +774,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ColumnConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="31" column="25" lean-forward="false" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/example-report.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -796,13 +792,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TableFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-279">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        <state relative-caret-position="146">
+          <caret line="69" column="59" lean-forward="false" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
           <folding>
             <element signature="method#stringDelimiter#0;class#TableFormatter#0" expanded="false" />
             <element signature="method#headRawWriter#0;class#TableFormatter#0" expanded="false" />
-            <element signature="e#1932#1940#0" expanded="true" />
-            <element signature="e#3133#3141#0" expanded="true" />
+            <element signature="method#howManyRowDefiner#0;class#TableFormatter#0" expanded="false" />
+            <element signature="e#1940#1948#0" expanded="true" />
+            <element signature="e#3886#3894#0" expanded="true" />
+            <element signature="e#5366#5374#0" expanded="true" />
           </folding>
         </state>
       </provider>
