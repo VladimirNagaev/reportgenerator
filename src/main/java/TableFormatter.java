@@ -80,27 +80,59 @@ public class TableFormatter {
             rowCounter = 0;
         }
 
-        for (int i = 0; i < howManyRowDefiner(thisRow.get(3)); i++) {
+        for (int i = 0; i < howManyRowDefiner(thisRow.get(thisRow.size()-1)); i++) {
             for (int j = 0; j < columnConfigs.size(); j++) {
-                if (j != 3) {
-                    int counter = 0;
-                    thisString.append("|");
-                    thisString.append(" ");
-                    counter += 2;
-                    thisString.append(thisRow.get(j));
-                    counter += thisRow.get(j).length();
-                    while (counter < columnConfigs.get(j).getWidth() - 1) {
+                if (thisRow.get(1).length() < columnConfigs.get(1).getWidth()) {
+                    if (j != 2) {
+                        int counter = 0;
+                        thisString.append("|");
                         thisString.append(" ");
-                        counter++;
-                    }
-                    thisString.append("|");
+                        counter += 2;
+                        thisString.append(thisRow.get(j));
+                        counter += thisRow.get(j).length();
+                        while (counter < columnConfigs.get(j).getWidth() - 1) {
+                            thisString.append(" ");
+                            counter++;
+                        }
+                        thisString.append("|");
 
+                    } else {
+                        int counter = 0;
+                        thisString.append("|");
+                        thisString.append(" ");
+                        counter += 2;
+                        thisString.append(nameData.get(i));
+
+
+                    }
                 } else {
-                    int counter = 0;
-                    thisString.append("|");
-                    thisString.append(" ");
-                    counter += 2;
-                    thisString.append(nameData.get(i));
+                    if (j != 2) {
+                        int counter = 0;
+                        thisString.append("|");
+                        thisString.append(" ");
+                        counter += 2;
+                        if (j == 2){
+                            thisString.append(thisRow.get(j));//  2 строки дату
+
+                        }
+                        counter += thisRow.get(j).length();
+                        while (counter < columnConfigs.get(j).getWidth() - 1) {
+                            thisString.append(" ");
+                            counter++;
+                        }
+                        thisString.append("|");
+
+                    } else {
+                        int counter = 0;
+                        thisString.append("|");
+                        thisString.append(" ");
+                        counter += 2;
+                        thisString.append(nameData.get(i));
+
+
+                    }
+
+
 
 
                 }

@@ -41,15 +41,15 @@
       <file leaf-file-name="TableFormatter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/TableFormatter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="69" column="59" lean-forward="false" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
+            <state relative-caret-position="673">
+              <caret line="114" column="79" lean-forward="false" selection-start-line="114" selection-start-column="79" selection-end-line="114" selection-end-column="79" />
               <folding>
                 <element signature="method#stringDelimiter#0;class#TableFormatter#0" expanded="false" />
                 <element signature="method#headRawWriter#0;class#TableFormatter#0" expanded="false" />
                 <element signature="method#howManyRowDefiner#0;class#TableFormatter#0" expanded="false" />
                 <element signature="e#1940#1948#0" expanded="true" />
-                <element signature="e#3886#3894#0" expanded="true" />
-                <element signature="e#5366#5374#0" expanded="true" />
+                <element signature="e#5052#5060#0" expanded="true" />
+                <element signature="e#6532#6540#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -611,15 +611,15 @@
       <updated>1592332441265</updated>
       <workItem from="1592332444465" duration="4429000" />
       <workItem from="1592372009763" duration="7222000" />
-      <workItem from="1592392835405" duration="8458000" />
+      <workItem from="1592392835405" duration="10503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20109000" />
+    <option name="totallyTimeSpent" value="22154000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1934" height="1047" extended-state="1" />
+    <frame x="-7" y="0" width="1934" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -724,8 +724,8 @@
             <element signature="method#headRawWriter#0;class#TableFormatter#0" expanded="false" />
             <element signature="method#howManyRowDefiner#0;class#TableFormatter#0" expanded="false" />
             <element signature="e#1940#1948#0" expanded="true" />
-            <element signature="e#3886#3894#0" expanded="true" />
-            <element signature="e#5366#5374#0" expanded="true" />
+            <element signature="e#5052#5060#0" expanded="true" />
+            <element signature="e#6532#6540#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -792,15 +792,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TableFormatter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="69" column="59" lean-forward="false" selection-start-line="69" selection-start-column="59" selection-end-line="69" selection-end-column="59" />
+        <state relative-caret-position="673">
+          <caret line="114" column="79" lean-forward="false" selection-start-line="114" selection-start-column="79" selection-end-line="114" selection-end-column="79" />
           <folding>
             <element signature="method#stringDelimiter#0;class#TableFormatter#0" expanded="false" />
             <element signature="method#headRawWriter#0;class#TableFormatter#0" expanded="false" />
             <element signature="method#howManyRowDefiner#0;class#TableFormatter#0" expanded="false" />
             <element signature="e#1940#1948#0" expanded="true" />
-            <element signature="e#3886#3894#0" expanded="true" />
-            <element signature="e#5366#5374#0" expanded="true" />
+            <element signature="e#5052#5060#0" expanded="true" />
+            <element signature="e#6532#6540#0" expanded="true" />
           </folding>
         </state>
       </provider>
