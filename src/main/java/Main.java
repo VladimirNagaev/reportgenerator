@@ -13,13 +13,23 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 
+        /*
         if (args.length == 3) {
-            String addressOfConfig = args[0];
+            String addressOfConfig;
+            //addressOfConfig = args[0]; // in result project
+            addressOfConfig = "settings.xml"; // in now to test it
+
             ConfigParser configParser = new ConfigParser();
             ReportConfig reportConfig = configParser.parseFromAddress(addressOfConfig);
             TableFormatter tableFormatter = new TableFormatter(reportConfig);
-            FileInputStream fileInputStream = new FileInputStream(args[1]);
-            FileOutputStream fileOutputStream = new FileOutputStream(args[2]);
+
+
+            // FileInputStream fileInputStream = new FileInputStream(args[1]);               //  in result project
+            FileInputStream fileInputStream = new FileInputStream("source-data.tsv"); // in now to test it
+
+
+            //FileOutputStream fileOutputStream = new FileOutputStream(args[2]);
+            FileOutputStream fileOutputStream = new FileOutputStream("output.txt");
 
 
             tableFormatter.format(fileInputStream, fileOutputStream);
@@ -31,6 +41,29 @@ public class Main {
         } else {
             System.out.println("Somerthing is Wrong");
         }
+        */
+
+        String addressOfConfig;
+        //addressOfConfig = args[0]; // in result project
+        addressOfConfig = "settings.xml"; // in now to test it
+
+        ConfigParser configParser = new ConfigParser();
+        ReportConfig reportConfig = configParser.parseFromAddress(addressOfConfig);
+        TableFormatter tableFormatter = new TableFormatter(reportConfig);
+
+
+        // FileInputStream fileInputStream = new FileInputStream(args[1]);               //  in result project
+        FileInputStream fileInputStream = new FileInputStream("source-data.tsv"); // in now to test it
+
+
+        //FileOutputStream fileOutputStream = new FileOutputStream(args[2]);
+        FileOutputStream fileOutputStream = new FileOutputStream("output.txt");
+
+
+        tableFormatter.format(fileInputStream, fileOutputStream);
+
+
+        fileOutputStream.close();
 
 
     }

@@ -62,12 +62,12 @@ public class TableFormatter {
 
     public String rowWriter(List<ColumnConfig> columnConfigs, List<String> thisRow, int rowCounter) {
         StringBuilder thisString = new StringBuilder();
-        StringTokenizer st = new StringTokenizer(thisRow.get(3), "*", false);
+        StringTokenizer st = new StringTokenizer(thisRow.get(2), "*", false);
         List<String> nameData = new ArrayList<String>();
         while (st.hasMoreTokens()) {
             nameData.add(st.nextToken());
         }
-        int willBeRows = howManyRowDefiner(thisRow.get(3));
+        int willBeRows = howManyRowDefiner(thisRow.get(2));
 
         if (rowCounter < config.getHeight() - willBeRows) {
             rowCounter += willBeRows;
@@ -80,7 +80,7 @@ public class TableFormatter {
             rowCounter = 0;
         }
 
-        for (int i = 0; i < howManyRowDefiner(thisRow.get(thisRow.size()-1)); i++) {
+        for (int i = 0; i < howManyRowDefiner(thisRow.get(thisRow.size() - 1)); i++) {
             for (int j = 0; j < columnConfigs.size(); j++) {
                 if (thisRow.get(1).length() < columnConfigs.get(1).getWidth()) {
                     if (j != 2) {
@@ -111,7 +111,7 @@ public class TableFormatter {
                         thisString.append("|");
                         thisString.append(" ");
                         counter += 2;
-                        if (j == 2){
+                        if (j == 2) {
                             thisString.append(thisRow.get(j));//  2 строки дату
 
                         }
@@ -133,8 +133,6 @@ public class TableFormatter {
                     }
 
 
-
-
                 }
 
             }
@@ -152,23 +150,15 @@ public class TableFormatter {
 
     public String stringDivider(String string, int width) { // divides names for parts to write in into stream
         // this void will chsnge inputed string to " Иван * ов Ки * рилл" where * is row delimiter
-        StringBuilder outputString = new StringBuilder();
+        StringBuilder outputString = new StringBuilder(string);
         List<String> currentName = new ArrayList<String>();
-        StringTokenizer currentNameTokenazer = new StringTokenizer(string, " ", false);
-        while (currentNameTokenazer.hasMoreTokens()) {
-            currentName.add(currentNameTokenazer.nextToken());
-        }
-        for (int i = 0; i < currentName.size(); i++) {
-            if (currentName.get(i).length() >= width - 1) {
 
-                // TODO implement it
-
-            } else if (currentName.get(i).length() <= width / 2) {
-                // TODO implement it
-            } else if ((currentName.get(i).length() > width) && (currentName.get(i).length() < width - 2)) {
-                //TODO DO it Bl'ya
-            }
-
+        int now = width - 1;
+        int rest = outputString.length() - 1;
+        while (rest > width) {
+            outputString.insert(now, " * ");
+            now += width - 1;
+            rest -= (width + 1);
         }
 
 
@@ -220,7 +210,9 @@ public class TableFormatter {
             }
 
 
+
         }
+
 
 
     }
