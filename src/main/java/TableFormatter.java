@@ -170,7 +170,7 @@ public class TableFormatter {
         String currentLine;
         StringBuilder builder = new StringBuilder();
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-16"));
         currentLine = reader.readLine();
         builder.append(headRawWriter(config.getColumnConfigs()));// шапка
         builder.append("\r\n");
@@ -180,14 +180,19 @@ public class TableFormatter {
         rowCounter++;
 
         while (currentLine != null) {
+            if (currentLine.length() == 1 && currentLine.charAt(0) == '\0'){
+                currentLine = reader.readLine();
+                continue;
+            }
             StringTokenizer currentStringTokenazer = new StringTokenizer(currentLine, defaultDelimiter, false);
             ArrayList<String> list = new ArrayList<String>();
+
 
             while (currentStringTokenazer.hasMoreTokens()) {
                 list.add(currentStringTokenazer.nextToken());
             }
 
-            // TODO createStrings
+
 
             builder.append(rowWriter(config.getColumnConfigs(), list, rowCounter)); // сама строка
             builder.append(stringDelimiter());
@@ -205,13 +210,13 @@ public class TableFormatter {
                 builder.append("\r\n");
                 rowCounter++;
 
-            } else {
-                continue;
             }
+            currentLine = reader.readLine();
 
 
 
         }
+        outputStream.write(builder.toString().getBytes());
 
 
 
