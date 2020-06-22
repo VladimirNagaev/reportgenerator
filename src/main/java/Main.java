@@ -13,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 
+
         /*
         if (args.length == 3) {
             String addressOfConfig;
@@ -57,13 +58,15 @@ public class Main {
 
 
         //FileOutputStream fileOutputStream = new FileOutputStream(args[2]);
-        FileOutputStream fileOutputStream = new FileOutputStream("output.txt");
+        FileOutputStream fileOutputStream = new FileOutputStream("output.txt",true);
 
 
         tableFormatter.format(fileInputStream, fileOutputStream);
 
 
         fileOutputStream.close();
+
+
 
 
     }

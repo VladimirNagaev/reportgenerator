@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 public class TableFormatter {
     ReportConfig config;
     String defaultDelimiter = "\t";
+    List<List<String>> allOurData;
 
 
     public TableFormatter(ReportConfig config) {
@@ -38,9 +39,16 @@ public class TableFormatter {
             cs.append(" ");
             cs.append(columnConfigs.get(i).getTitle());
             cs.append(" ");
-            for (int j = cs.length(); j < columnConfigs.get(i).getWidth() - 1; j++) {
+
+            while (cs.length() < columnConfigs.get(i).getWidth()) {
                 cs.append(" ");
             }
+
+            /*
+            for (int j = cs.length(); j < columnConfigs.get(i).getWidth(); j++) {
+                cs.append(" ");
+            }
+            */
             cs.append("|");
             headerString.append(cs);
         }
@@ -60,88 +68,66 @@ public class TableFormatter {
         return rows;
     }
 
-    public String rowWriter(List<ColumnConfig> columnConfigs, List<String> thisRow, int rowCounter) {
-        StringBuilder thisString = new StringBuilder();
-        StringTokenizer st = new StringTokenizer(thisRow.get(2), "*", false);
-        List<String> nameData = new ArrayList<String>();
-        while (st.hasMoreTokens()) {
-            nameData.add(st.nextToken());
-        }
-        int willBeRows = howManyRowDefiner(thisRow.get(2));
-
-        if (rowCounter < config.getHeight() - willBeRows) {
-            rowCounter += willBeRows;
-
+    public List<String> stringForPartsDevider(String string, int width) {
+        List<String> stringList = new ArrayList<String>();
+        StringBuilder stringBuilder = new StringBuilder(string);
+        int rest = stringBuilder.length();
+        int now = 0;
+        if (string.length() > width) {
+            while (rest >= width) {
+                stringBuilder.append(stringBuilder.substring(now, now + width - 1));
+                now += width;
+                rest -= width;
+            }
         } else {
-            thisString.append(stringDelimiter());
-            thisString.append("\r\n");
-            thisString.append("`");
-            thisString.append("\r\n");
-            rowCounter = 0;
+            return null;
+        }
+        return stringList;
+    }
+
+    public String rowWriter(List<String> ourRow, int rowCounter) {
+        StringBuilder result = new StringBuilder();
+
+        int willBeRows = 1;
+
+        for (int i = 0; i < ourRow.size(); i++) {
+            if (stringForPartsDevider(ourRow.get(i), config.getColumnConfigs().get(i).getWidth()) != null) {
+                if (willBeRows < stringForPartsDevider(ourRow.get(i), config.getColumnConfigs().get(i).getWidth()).size()) {
+                    willBeRows = stringForPartsDevider(ourRow.get(i), config.getColumnConfigs().get(i).getWidth()).size();
+                }
+            }
         }
 
-        for (int i = 0; i < howManyRowDefiner(thisRow.get(thisRow.size() - 1)); i++) {
-            for (int j = 0; j < columnConfigs.size(); j++) {
-                if (thisRow.get(1).length() < columnConfigs.get(1).getWidth()) {
-                    if (j != 2) {
-                        int counter = 0;
-                        thisString.append("|");
-                        thisString.append(" ");
-                        counter += 2;
-                        thisString.append(thisRow.get(j));
-                        counter += thisRow.get(j).length();
-                        while (counter < columnConfigs.get(j).getWidth() - 1) {
-                            thisString.append(" ");
-                            counter++;
-                        }
-                        thisString.append("|");
+        int crSize = 0;
+        int rowNumber = 1;
 
-                    } else {
-                        int counter = 0;
-                        thisString.append("|");
-                        thisString.append(" ");
-                        counter += 2;
-                        thisString.append(nameData.get(i));
-
+        for (int i = 0; i < willBeRows; i++) { // по строкам
+            for (int j = 0; j < ourRow.size(); j++) { // по колонкам
+                if (stringForPartsDevider(ourRow.get(j), config.getColumnConfigs().get(j).getWidth()) == null) {
+                    crSize = result.length();
+                    result.append("| ");
+                    result.append(ourRow.get(j));
+                    while (result.length() < crSize + config.getColumnConfigs().get(j).getWidth() - 1) {
+                        result.append(" ");
 
                     }
+                    result.append(" |");
+
                 } else {
-                    if (j != 2) {
-                        int counter = 0;
-                        thisString.append("|");
-                        thisString.append(" ");
-                        counter += 2;
-                        if (j == 2) {
-                            thisString.append(thisRow.get(j));//  2 строки дату
-
-                        }
-                        counter += thisRow.get(j).length();
-                        while (counter < columnConfigs.get(j).getWidth() - 1) {
-                            thisString.append(" ");
-                            counter++;
-                        }
-                        thisString.append("|");
-
-                    } else {
-                        int counter = 0;
-                        thisString.append("|");
-                        thisString.append(" ");
-                        counter += 2;
-                        thisString.append(nameData.get(i));
 
 
-                    }
-
+                    // а вот тут будет обрабатываться то что с боьшими именами и датами
 
                 }
 
             }
-            thisString.append("\r\n");
+
 
         }
 
+        return result.toString();
 
-        return thisString.toString();
+
     }
 
     public void setDefaultDelimiter(String defaultDelimiter) {
@@ -187,33 +173,12 @@ public class TableFormatter {
                 list.add(currentStringTokenazer.nextToken());
             }
 
-            // TODO createStrings
-
-            builder.append(rowWriter(config.getColumnConfigs(), list, rowCounter)); // сама строка
-            builder.append(stringDelimiter());
-            builder.append("\r\n");
-            rowCounter++;
-            if (rowCounter >= config.getHeight() - 2) {
-                builder.append("\r\n");
-                builder.append("`");
-                builder.append("\r\n");
-                rowCounter = 0;
-                builder.append(headRawWriter(config.getColumnConfigs()));// шапка
-                builder.append("\r\n");
-                rowCounter++;
-                builder.append(stringDelimiter()); // разделитель
-                builder.append("\r\n");
-                rowCounter++;
-
-            } else {
-                continue;
-            }
-
-
+            allOurData.add(list);
 
         }
 
 
+        outputStream.write(builder.toString().getBytes());
 
     }
 

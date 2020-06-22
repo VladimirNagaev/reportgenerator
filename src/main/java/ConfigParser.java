@@ -34,12 +34,12 @@ public class ConfigParser {
         reportConfig.setHeight(Integer.valueOf(tableMain.getAttribute("height")));
         reportConfig.setWidth(Integer.valueOf(tableMain.getAttribute("width")));
 
-        NodeList collumsNodelist = document.getElementsByTagName("column");
+        NodeList collumsNodeList = document.getElementsByTagName("column");
 
-        for (int i = 0; i < collumsNodelist.getLength() ; i++) {
-            if( collumsNodelist.item(i).getNodeType() == Node.ELEMENT_NODE){
+        for (int i = 0; i < collumsNodeList.getLength() ; i++) {
+            if( collumsNodeList.item(i).getNodeType() == Node.ELEMENT_NODE){
 
-                Element columnElemrnt = (Element) collumsNodelist.item(i);
+                Element columnElemrnt = (Element) collumsNodeList.item(i);
                 ColumnConfig columnConfig = new ColumnConfig();
                 columnConfig.setTitle(columnElemrnt.getAttribute("title"));
                 columnConfig.setWidth(Integer.valueOf(columnElemrnt.getAttribute("width")));
