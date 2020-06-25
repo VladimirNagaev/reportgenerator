@@ -115,12 +115,35 @@ public class TableFormatter {
 
                 } else {
 
+                    crSize = result.length();
 
                     // а вот тут будет обрабатываться то что с боьшими именами и датами
+
+                    result.append("| ");
+                    if (stringForPartsDevider(ourRow.get(j), config.getColumnConfigs().get(j).getWidth()).size() > i) {
+                        result.append(stringForPartsDevider(ourRow.get(j), config.getColumnConfigs().get(j).getWidth()).get(i));
+                        while (result.length() < crSize + config.getColumnConfigs().get(j).getWidth() - 1) {
+                            result.append(" ");
+
+                        }
+                        result.append(" |");
+
+                    } else {
+
+                        while (result.length() < crSize + config.getColumnConfigs().get(j).getWidth() - 1) {
+                            result.append(" ");
+
+                        }
+                        result.append(" |");
+
+
+                    }
 
                 }
 
             }
+            result.append("\r\n");
+            rowCounter++;
 
 
         }
