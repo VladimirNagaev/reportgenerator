@@ -49,7 +49,7 @@ public class TableFormatter {
                 cs.append(" ");
             }
             */
-            cs.append("|");
+            cs.append("| ");
             headerString.append(cs);
         }
 
@@ -73,16 +73,18 @@ public class TableFormatter {
         StringBuilder stringBuilder = new StringBuilder(string);
         int rest = stringBuilder.length();
         int now = 0;
-        if (string.length() > width) {
+        if (string.length() > width-1) {
             while (rest >= width) {
-                stringBuilder.append(stringBuilder.substring(now, now + width - 1));
+                stringList.add(stringBuilder.substring(now, now + width ));
                 now += width;
                 rest -= width;
             }
+
+            return stringList;
         } else {
             return null;
         }
-        return stringList;
+
     }
 
     public String rowWriter(List<String> ourRow, int rowCounter) {
@@ -102,27 +104,39 @@ public class TableFormatter {
         int rowNumber = 1;
 
         for (int i = 0; i < willBeRows; i++) { // по строкам
+            boolean alreadyWrittenOnce = false;
+            if (i > 0) {
+                alreadyWrittenOnce = true;
+            }
             for (int j = 0; j < ourRow.size(); j++) { // по колонкам
                 if (stringForPartsDevider(ourRow.get(j), config.getColumnConfigs().get(j).getWidth()) == null) {
                     crSize = result.length();
                     result.append("| ");
-                    result.append(ourRow.get(j));
-                    while (result.length() < crSize + config.getColumnConfigs().get(j).getWidth() - 1) {
+
+                    if (!alreadyWrittenOnce) {
+                        result.append(ourRow.get(j));
+                    }
+
+
+                    while (result.length() < crSize + config.getColumnConfigs().get(j).getWidth() + 2) {
                         result.append(" ");
 
                     }
-                    result.append(" |");
+
 
                 } else {
-
                     crSize = result.length();
 
                     // а вот тут будет обрабатываться то что с боьшими именами и датами
-
-                    result.append("| ");
+                    if (result.length() > 1 && result.charAt(result.length() - 1) != '|') {
+                        result.append("| ");
+                    } else {
+                        result.append("  ");
+                    }
+                    // result.append("| ");
                     if (stringForPartsDevider(ourRow.get(j), config.getColumnConfigs().get(j).getWidth()).size() > i) {
                         result.append(stringForPartsDevider(ourRow.get(j), config.getColumnConfigs().get(j).getWidth()).get(i));
-                        while (result.length() < crSize + config.getColumnConfigs().get(j).getWidth() - 1) {
+                        while (result.length() < crSize + config.getColumnConfigs().get(j).getWidth() ) {
                             result.append(" ");
 
                         }
@@ -130,7 +144,7 @@ public class TableFormatter {
 
                     } else {
 
-                        while (result.length() < crSize + config.getColumnConfigs().get(j).getWidth() - 1) {
+                        while (result.length() < crSize + config.getColumnConfigs().get(j).getWidth()+1) {
                             result.append(" ");
 
                         }
@@ -179,7 +193,7 @@ public class TableFormatter {
         String currentLine;
         StringBuilder builder = new StringBuilder();
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-16"));
         currentLine = reader.readLine();
         builder.append(headRawWriter(config.getColumnConfigs()));// шапка
         builder.append("\r\n");
@@ -189,16 +203,41 @@ public class TableFormatter {
         rowCounter++;
 
         while (currentLine != null) {
+            if (currentLine.length() == 1 && currentLine.charAt(0) == '\0') {
+                currentLine = reader.readLine();
+                continue;
+            }
             StringTokenizer currentStringTokenazer = new StringTokenizer(currentLine, defaultDelimiter, false);
             ArrayList<String> list = new ArrayList<String>();
+
 
             while (currentStringTokenazer.hasMoreTokens()) {
                 list.add(currentStringTokenazer.nextToken());
             }
 
-            allOurData.add(list);
+
+            builder.append(rowWriter(list, rowCounter)); // сама строка
+            builder.append(stringDelimiter());
+            builder.append("\r\n");
+            rowCounter++;
+            if (rowCounter >= config.getHeight() - 2) {
+                builder.append("\r\n");
+                builder.append("`");
+                builder.append("\r\n");
+                rowCounter = 0;
+                builder.append(headRawWriter(config.getColumnConfigs()));// шапка
+                builder.append("\r\n");
+                rowCounter++;
+                builder.append(stringDelimiter()); // разделитель
+                builder.append("\r\n");
+                rowCounter++;
+
+            }
+            currentLine = reader.readLine();
+
 
         }
+        outputStream.write(builder.toString().getBytes());
 
 
         outputStream.write(builder.toString().getBytes());

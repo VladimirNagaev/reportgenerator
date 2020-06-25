@@ -18,44 +18,67 @@ import java.util.List;
 public class ConfigParser {
 
 
-    public  ReportConfig parseFromAddress(String address) throws ParserConfigurationException, IOException, SAXException {
+    public ReportConfig parseFromAddress(String address) throws ParserConfigurationException, IOException, SAXException {
 
         ReportConfig reportConfig = new ReportConfig(); // to full it
         List<ColumnConfig> parsedCollumnConfiges = new ArrayList<ColumnConfig>();
 
-             // TODO   implement later
+
         File configFile = new File(address);
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.parse(configFile);
+        Element root = document.getDocumentElement();
 
-        Element tableMain = (Element) document.getElementsByTagName("page");
-        reportConfig.setHeight(Integer.valueOf(tableMain.getAttribute("height")));
-        reportConfig.setWidth(Integer.valueOf(tableMain.getAttribute("width")));
+
+        NodeList tableMain = root.getElementsByTagName("page");
+
+
+        for (int i = 0; i < tableMain.item(0).getChildNodes().getLength(); i++) {
+            if (tableMain.item(0).getChildNodes().item(i).getNodeName().equals("height")) {
+
+                reportConfig.setHeight(Integer.valueOf(tableMain.item(0).getChildNodes().item(i).getTextContent()));
+            } else if (tableMain.item(0).getChildNodes().item(i).getNodeName().equals("width")) {
+                reportConfig.setWidth(Integer.valueOf(tableMain.item(0).getChildNodes().item(i).getTextContent()));
+
+            }
+        }
+
 
         NodeList collumsNodeList = document.getElementsByTagName("column");
+
 
         for (int i = 0; i < collumsNodeList.getLength() ; i++) {
             if( collumsNodeList.item(i).getNodeType() == Node.ELEMENT_NODE){
 
+
                 Element columnElemrnt = (Element) collumsNodeList.item(i);
                 ColumnConfig columnConfig = new ColumnConfig();
-                columnConfig.setTitle(columnElemrnt.getAttribute("title"));
-                columnConfig.setWidth(Integer.valueOf(columnElemrnt.getAttribute("width")));
 
+
+
+                for (int j = 0; j < columnElemrnt.getChildNodes().getLength(); j++) {
+
+
+                    if (columnElemrnt.getChildNodes().item(j).getNodeName().equals("title")) {
+                        columnConfig.setTitle(columnElemrnt.getChildNodes().item(j).getTextContent());
+                    } else if (columnElemrnt.getChildNodes().item(j).getNodeName().equals("width")) {
+                        columnConfig.setWidth(Integer.valueOf(columnElemrnt.getChildNodes().item(j).getTextContent()));
+                    }
+
+
+                }
                 parsedCollumnConfiges.add(columnConfig);
 
             }
-            
+
         }
 
         reportConfig.setColumnConfigs(parsedCollumnConfiges);
 
         return reportConfig;
     }
-
-
 
 
 }
